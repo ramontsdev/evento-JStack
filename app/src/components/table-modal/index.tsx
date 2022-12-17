@@ -15,6 +15,7 @@ export function TableModal({ visible, onClose, onSave }: TableModalProps) {
   const [table, setTable] = useState('');
 
   function handleSave() {
+    setTable('');
     onSave(table);
     onClose?.();
   }
@@ -31,14 +32,14 @@ export function TableModal({ visible, onClose, onSave }: TableModalProps) {
             <Text weight='600'>Informe a mesa</Text>
 
             <TouchableOpacity onPress={onClose}>
-              <Close color='#665' />
+              <Close color='#566' />
             </TouchableOpacity>
           </Header>
 
           <Form>
             <Input
               placeholder='Número da mesa'
-              placeholderTextColor="#665"
+              placeholderTextColor="#566"
               keyboardType='number-pad'
               onChangeText={setTable}
             />
