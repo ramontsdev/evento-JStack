@@ -9,9 +9,11 @@ import { Text } from '../Text';
 
 import { AddToCartButton, ProductContainer, ProductDetails, ProductImage, Separator } from './styles';
 
+type MenuProps = {
+  onAddToCart(product: Product): void;
+}
 
-
-export function Menu() {
+export function Menu({ onAddToCart }: MenuProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<null | Product>(null);
 
@@ -26,6 +28,7 @@ export function Menu() {
         product={selectedProduct}
         visible={isModalVisible}
         onClose={() => setIsModalVisible(false)}
+        onAddToCart={onAddToCart}
       />
       <FlatList
         data={products}
@@ -47,7 +50,7 @@ export function Menu() {
               <Text size={14} weight='600'>{formatCurrency(product.price)}</Text>
             </ProductDetails>
 
-            <AddToCartButton>
+            <AddToCartButton onPress={() => onAddToCart(product)}>
               <PlusCircle />
             </AddToCartButton>
           </ProductContainer>
